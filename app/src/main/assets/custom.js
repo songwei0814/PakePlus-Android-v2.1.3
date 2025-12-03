@@ -30,7 +30,10 @@ const hookClick = (e) => {
 
 window.open = function (url, target, features) {
     console.log('open', url, target, features)
-    location.href = url
+    // 在 WebView 中使用异步方式确保跳转能够执行
+    setTimeout(() => {
+        window.location.href = url
+    }, 0)
 }
 
 document.addEventListener('click', hookClick, { capture: true })
